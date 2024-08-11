@@ -16,6 +16,7 @@ const onSearchFormSubmit = event => {
     }
 
     loader.classList.remove('is-hidden');
+    showGallery([]);
 
     fetchImages(searchedValue)
         .finally(() => {
@@ -24,8 +25,7 @@ const onSearchFormSubmit = event => {
         })
         .then((result) => {
             if (result && result?.hits?.length === 0) {
-                showToast("Sorry, there are no images matching your search query. Please try again!");
-                showGallery([]);
+                showToast("Sorry, there are no images matching your search query. Please try again!");                
                 searchForm.reset();
                 return;
             }
