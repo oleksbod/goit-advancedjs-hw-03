@@ -6,24 +6,27 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
-  <section class="navigation">
-    <ul class="navigation-list">
-      <li class="navigation-item">
-        <a href="./1-timer.html">
-          Timer
-        </a>
-      </li>
-      <li class="navigation-item">
-        <a href="./2-snackbar.html">
-          Snackbar
-        </a>
-      </li>
-    </ul>
-  </section>
+  <div class="container">
+    <form class="search-form">
+      <input type="text" name="user_query" id="search" placeholder="Search images..." required />
+      <button id="searchButton" type="submit">Search</button>
+    </form>
+    <div class="loader-wrapper">
+      <span class="loader is-hidden"></span>
+    </div>
+    <div class="gallery-container">
+      <ul class="gallery"></ul>
+    </div>
+  </div>
+
+  <script src="./main.js" type="module" defer></script>
 </body>
 
 </html>
