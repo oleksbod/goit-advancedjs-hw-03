@@ -1,2 +1,27 @@
-import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                      */import{f as p,i as S}from"./assets/vendor-9808d4ac.js";let o=null,l=null;const b={icon:"icon-bi_x-octagon",position:"topRight",title:"Error",progressBarColor:"rgb(181, 27, 27)",message:"Please choose a date in the future"},w={weekdays:{shorthand:["Su","Mo","Tu","We","Th","Fr","Sa"],longhand:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},firstDayOfWeek:1},g={enableTime:!0,time_24hr:!0,defaultDate:new Date,minuteIncrement:1,locale:w,onClose(t){o=t[0],o<=new Date?(S.error(b),s.disabled=!0):s.disabled=!1}},y=document.querySelector("#datetime-picker"),s=document.querySelector("button[data-start]"),a={days:document.querySelector("[data-days]"),hours:document.querySelector("[data-hours]"),minutes:document.querySelector("[data-minutes]"),seconds:document.querySelector("[data-seconds]")};p("#datetime-picker",g);s.addEventListener("click",()=>{o&&o>new Date&&(s.disabled=!0,y.disabled=!0,k(o))});function k(t){l=setInterval(()=>{const e=t-new Date;if(e<=0){clearInterval(l),m(0,0,0,0),y.disabled=!1;return}const{days:n,hours:i,minutes:u,seconds:c}=C(e);m(n,i,u,c)},1e3)}function m(t,d,e,n){a.days.textContent=r(t),a.hours.textContent=r(d),a.minutes.textContent=r(e),a.seconds.textContent=r(n)}function C(t){const u=Math.floor(t/864e5),c=Math.floor(t%864e5/36e5),h=Math.floor(t%864e5%36e5/6e4),f=Math.floor(t%864e5%36e5%6e4/1e3);return{days:u,hours:c,minutes:h,seconds:f}}function r(t){return String(t).padStart(2,"0")}
+import{S as m,i as u}from"./assets/vendor-f33cd494.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))a(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const n of r.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&a(n)}).observe(document,{childList:!0,subtree:!0});function s(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function a(t){if(t.ep)return;t.ep=!0;const r=s(t);fetch(t.href,r)}})();const p="45384085-93240435f28f8173a532fd559",f=o=>{const e=`https://pixabay.com/api/?key=${p}&q=${encodeURIComponent(o)}&image_type=photo&orientation=horizontal&safesearch=true`;return fetch(e).then(s=>{if(!s.ok)throw new Error(s.status);return s.json()})},c=o=>{u.error({position:"topRight",icon:"icon-bi_x-octagon",title:"",progressBarColor:"rgb(181, 27, 27)",message:o})},h=document.querySelector(".gallery"),y=new m(".gallery a",{captions:!0,captionsData:"alt",captionDelay:250}),g=o=>o.map(e=>`<li class="gallery-item">
+      <a class="gallery-link" href="${e.largeImageURL}">
+        <img
+            class="gallery-image"
+            src="${e.webformatURL}"
+            alt="${e.tags}">
+        <div class="gallery-footer">
+            <div class="item-block">
+                <span class="item-title">Likes</span>
+                <span class="item-count">${e.likes}</span>
+            </div>
+            <div class="item-block">
+                <span class="item-title">Views</span>
+                <span class="item-count">${e.views}</span>
+            </div>
+            <div class="item-block">
+                <span class="item-title">Comments</span>
+                <span class="item-count">${e.comments}</span>
+            </div>
+            <div class="item-block">
+                <span class="item-title">Downloads</span>
+                <span class="item-count">${e.downloads}</span>
+            </div>
+        </div>
+      </a>
+     </li>`).join(""),l=o=>{h.innerHTML=g(o),y.refresh()},i=document.querySelector(".search-form"),d=document.querySelector(".loader"),v=o=>{o.preventDefault();const e=o.target.elements.user_query.value.trim();if(e===""){c("Fill out the search field!"),i.reset();return}d.classList.remove("is-hidden"),f(e).finally(()=>{d.classList.add("is-hidden"),i.reset()}).then(s=>{var a;if(s&&((a=s==null?void 0:s.hits)==null?void 0:a.length)===0){c("Sorry, there are no images matching your search query. Please try again!"),l([]),i.reset();return}l(s.hits)}).catch(s=>{console.log(s)})};i.addEventListener("submit",v);
 //# sourceMappingURL=commonHelpers.js.map
